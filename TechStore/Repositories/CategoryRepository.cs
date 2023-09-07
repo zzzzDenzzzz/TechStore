@@ -27,8 +27,12 @@ namespace TechStore.Repositories
         public bool DeleteCategory(int id)
         {
             var category = _context.Categories.FirstOrDefault(c => c.Id == id);
-            _context.Categories.Remove(category);
-            return Save();
+            if (category is not null)
+            {
+                _context.Categories.Remove(category);
+                return Save();
+            }
+            return false;
         }
 
         public ICollection<Category> GetCategories()
