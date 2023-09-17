@@ -25,7 +25,7 @@ namespace TechStore.Controllers
         [HttpGet("{categoryId}")]
         public IActionResult GetCategoryById(int categoryId)
         {
-            if (_categoryRepository.CategoryExists(categoryId)) return BadRequest();
+            if (!_categoryRepository.CategoryExists(categoryId)) return BadRequest();
 
             var category = _categoryRepository.GetCategory(categoryId);
             return Ok(category);

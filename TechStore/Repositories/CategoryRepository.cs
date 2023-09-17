@@ -13,10 +13,7 @@ namespace TechStore.Repositories
             _context = context;
         }
 
-        public bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(c => c.Id == id);
-        }
+        public bool CategoryExists(int id) => _context.Categories.Any(c => c.Id == id);
 
         public bool CreateCategory(Category category)
         {
@@ -35,20 +32,11 @@ namespace TechStore.Repositories
             return false;
         }
 
-        public ICollection<Category> GetCategories()
-        {
-            return _context.Categories.ToList();
-        }
+        public ICollection<Category> GetCategories() => _context.Categories.ToList();
 
-        public Category GetCategory(int id)
-        {
-            return _context.Categories.FirstOrDefault(c => c.Id == id);
-        }
+        public Category GetCategory(int id) => _context.Categories.FirstOrDefault(c => id == c.Id);
 
-        public ICollection<Product> GetProductsByCategoryId(int categoryId)
-        {
-            return _context.Products.Where(p => p.CategoryId == categoryId).ToList();
-        }
+        public ICollection<Product> GetProductsByCategoryId(int categoryId) => _context.Products.Where(p => p.CategoryId == categoryId).ToList();
 
         public bool Save()
         {
